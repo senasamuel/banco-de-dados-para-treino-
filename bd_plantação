@@ -1,0 +1,63 @@
+create database  plantacao;
+
+create table Canteiro (
+    CanteiroId integer(11) not null auto_increment,
+    Nome char(20) collate default null,
+    LuzDiaria integer(2) default null,
+    Agua integer(3) default null,
+    primary key (CanteiroId), 
+    unique key CanteiroId (CanteiroId)
+);
+
+create table plantio (
+    PlantioId int,
+    PlantaId int,
+    FuncId int,
+    CanteiroId int,
+    data date,
+    sementes int
+);
+
+create table funcionario(
+    FuncId int,
+    Nome char (80),
+    Idade int
+);
+
+create table planta (
+    Id int,
+    Nome char(20),
+    LuzDiaria double(4,3),
+    Agua double(4,3),
+    peso double(4,3)
+);
+
+create table colhido(
+    ColhidoId int,
+    PlantaId int,
+    FuncId int,
+    CanteiroId int,
+    data date,
+    Quantidade int,
+    peso double
+
+);
+
+alter table Funcionario add cpf varchar (20), Rg varchar (15);
+ALTER TABLE funcionario ADD cpf varchar(20),rg varchar(15)
+alter table funcionario alter column cpf varchar (14);
+
+INSERT INTO planta (nome, luzdiaria, agua,peso )
+VALUES ('abacaxi', 3.0, 5.25, 1.5)
+
+INSERT INTO `planta` (`nome`,`luzdiaria`,`agua`,`peso`)
+VALUES ('tomate',0.03,0.03,0.03);
+
+INSERT INTO `funcionario`(`funcid`,`nome`,`idade`)
+VALUES (25,'Gabriella Fonseca Ribeiro',20);
+
+INSERT INTO
+`plantio`(`plantioID`,`plantaID`,`funcID`,`canteiroID`,`Data`,`sementes`)
+VALUES (15,1,25,4,2011-06-07,8);
+
+select * from funcionarios;
