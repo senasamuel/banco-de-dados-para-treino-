@@ -1,0 +1,40 @@
+create database curso;
+
+create table alunos(
+    codigo int not null auto_increment,
+    nome varchar(20),
+    telefone char(10) not null,
+    primary key(codigo)
+);
+
+create table estudantes(
+    numeroCadastro int not null auto_increment,
+    nome varchar(35) not null,
+    turma int,
+    primary key (numeroCadastro)
+);
+
+create table compras(
+    artigo int(4) unsigned zerofill default '0000' not null,
+    vendedor char (20) default'' not null,
+    preco double(16,2) default '0.00'not null,
+    primary key (artigo, vendedor)
+);
+insert into compras values 
+(1,'a',3.45),(1,'b',3.99),(2,'a',10.99),(3,'b',1.45),(3,'c',1.69),
+(3,'d',1.25),(4,'d',19.95);
+
+select * from compras;
+select max as from compras;
+
+select artigo, vendedor, Preco 
+from compras
+where prico=19.95
+
+create table armazem (
+    item int(6) default not null auto_increment,
+    vendedor char (20) not null,
+    preco double(16,2) not null,
+    fornecedor int (6) not null,
+    primary key (item )
+);
