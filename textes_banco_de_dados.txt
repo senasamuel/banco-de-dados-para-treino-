@@ -1,0 +1,12 @@
+create database cadastro_st;
+
+use cadastro_st;
+
+create table cidades(
+    id char(2) not null,
+    nome varchar(40),
+    uf char(2)
+
+);
+
+insert into cidades(id,nome, uf) values('1','Fortaleza','CE');
