@@ -1,0 +1,113 @@
+create database LojaVirtual;
+
+use LojaVirtual;
+
+create table Cliente(
+    ClienteId INTEGER not null,
+    PrimNome varchar(32) not null,
+    UltNome varchar(32) not null,
+    Endereco varchar(64) not null,
+    Cidade varchar(32) not null,
+    Cep varchar(10) not null,
+    Telefone varchar(16),
+    primary key (ClienteId)
+);
+
+create table Produto(
+    ProdutoId integer not null,
+    Descricao varchar(64) not null,
+    PrecoCusto double precision,
+    PrecoVenda double precision,
+    primary key (ProdutoId),
+    check(PrecoCusto >=0),
+    check(PrecoVenda>=0)
+);
+
+create table Compra (
+    CompraId integer not null,
+    ClienteId integer not null,
+    DataCompra date not null,
+    DataEnt date,
+    Frete double precision,
+    primary key (CompraId),
+    foreign key (ClienteId) references cliente (clienteId) on delete cascade on update cascade
+);
+
+create table envolve (
+    CompraId integer not null,
+    ProdutoId integer not null,
+    Quantidade integer not null
+);
+
+INSERT INTO CLIENTE VALUES(794613,'Jandira','Soares','Avenida José Romão,
+27','Caruaru','036894-567','023 9876');
+INSERT INTO CLIENTE VALUES(172839,'Andre','Soares','Avenida Oito de Maio, 52','São
+Lourenço da Mata','15214-441','876 3527');
+INSERT INTO CLIENTE VALUES(740025,'Alex','Matheus','Rua Frei Jaboatão, 4','Jaboatão dos
+Guararapes','22557-913','010 4567');
+INSERT INTO CLIENTE VALUES(974631,'Adriano','Matheus','Rua Madeira, 171','Cabo de Santo
+Agostinho','66476-621','487 3871');
+INSERT INTO CLIENTE VALUES(130791,'Simone','Cozin','Rua Pau-a-pique,
+75','Paulista','52447-890','514 5926');
+INSERT INTO CLIENTE VALUES(159951,'Neil','Matheus','Rua Castanhola, 5','Jaboatão dos
+Guararapes','22557-713', null);
+INSERT INTO CLIENTE VALUES(159753,'Ricardo','Soares','Avenida Boa Viagem,
+1523','Recife','18112-234','342 5982');
+INSERT INTO CLIENTE VALUES(753159,'Anna','Soares','Avenida Boa Viagem,
+1523','Recife','18112-234','342 5982');
+INSERT INTO CLIENTE VALUES(456321,'Christina','Hickman','Rua do Sol,
+2248','Olinda','17128-964','342 5432');
+INSERT INTO CLIENTE VALUES(159159,'Marcelo','Rodrigues','Beco do Bom Negócio,
+85','Goiana','17117-100','505 5482');
+INSERT INTO CLIENTE VALUES(823971,'Davi','Jodaias','Avenida Caxangá, 267','Recife','18112-
+654', null);
+INSERT INTO CLIENTE VALUES(139159,'Ricardo','Ney','42 Thatched
+Way','Camaragibe','40162-974','505 6482');
+INSERT INTO CLIENTE VALUES(317931,'Laura','Martins','Avenida Francisco Viana,
+1277','Carpina','08174-502','821 2335');
+INSERT INTO CLIENTE VALUES(150056,'Bill','O''Neill','Rua Padre Galdino, 2','Pombos','18150-
+150','435 1234');
+INSERT INTO CLIENTE VALUES(107050,'Davi','Hudson','Avenida Brasil, 40','Gravatá','10105-
+504','961 4526');
+
+INSERT INTO PRODUTO VALUES(1,'Palavas Cruzadas', 15.23, 21.95);
+INSERT INTO PRODUTO VALUES(2,'Cubo mágico', 7.45, 11.49);
+INSERT INTO PRODUTO VALUES(3,'CD Linux', 1.99, 2.49);
+INSERT INTO PRODUTO VALUES(4,'Lenços', 2.11, 3.99);
+INSERT INTO PRODUTO VALUES(5,'Porta-retratos', 7.54, 9.95);
+INSERT INTO PRODUTO VALUES(6,'Ventilador pequeno', 9.23, 15.75);
+INSERT INTO PRODUTO VALUES(7,'Ventilador grande', 13.36, 19.95);
+INSERT INTO PRODUTO VALUES(8,'Escova de dentes', 0.75, 1.45);
+INSERT INTO PRODUTO VALUES(9,'Moeda romana', 2.34, 2.45);
+INSERT INTO PRODUTO VALUES(10,'Mochila', 0.01, 0.0);
+INSERT INTO PRODUTO VALUES(11,'Caixas de som', 19.73, 25.32);
+
+INSERT INTO COMPRA VALUES(1, 139159,'13-03-2004','17-03-2004', 2.99);
+INSERT INTO COMPRA VALUES(2, 456321,'23-06-2004','24-06-2004', 0.00);
+INSERT INTO COMPRA VALUES(3, 159951,'02-09-2004','12-09-2004', 3.99);
+INSERT INTO COMPRA VALUES(4, 823971,'03-09-2004','10-09-2004', 2.99);
+INSERT INTO COMPRA VALUES(5, 794613,'21-07-2004','24-07-2004', 0.00);
+INSERT INTO COMPRA VALUES(6, 823971,'12-02-2004','18-02-2004', 0.59);
+INSERT INTO COMPRA VALUES(7, 159753,'16-05-2004','18-05-2004', 0.00);
+
+INSERT INTO ENVOLVE VALUES(1, 4, 1);
+INSERT INTO ENVOLVE VALUES(1, 7, 1);
+INSERT INTO ENVOLVE VALUES(1, 9, 1);
+INSERT INTO ENVOLVE VALUES(2, 1, 1);
+INSERT INTO ENVOLVE VALUES(2, 10, 1);
+INSERT INTO ENVOLVE VALUES(2, 7, 2);
+INSERT INTO ENVOLVE VALUES(2, 4, 2);
+INSERT INTO ENVOLVE VALUES(3, 2, 1);
+INSERT INTO ENVOLVE VALUES(3, 1, 1);
+INSERT INTO ENVOLVE VALUES(4, 5, 2);
+INSERT INTO ENVOLVE VALUES(5, 1, 1);
+INSERT INTO ENVOLVE VALUES(5, 3, 1);
+INSERT INTO ENVOLVE VALUES(6, 6, 2);
+INSERT INTO ENVOLVE VALUES(6, 8, 1);
+INSERT INTO ENVOLVE VALUES(7, 11, 2);
+INSERT INTO ENVOLVE VALUES(8, 11, 1);
+INSERT INTO ENVOLVE VALUES(8, 9, 2);
+INSERT INTO ENVOLVE VALUES(8, 6, 2);
+
+
+alter table envolve rename to Carrinho;
