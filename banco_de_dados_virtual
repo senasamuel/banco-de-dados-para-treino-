@@ -1,0 +1,46 @@
+create database virtual;
+
+use virtual;
+
+create table CadFun(
+    CodFun integer not null primary key,
+    Nome varchar(40) not null,
+    Depto char(2),
+    Funcao char(20),
+    Salario decimal(10,2)
+);
+
+insert into CadFun (CodFun, Nome, Depto,Funcao, Salario)
+values(12,'Carlos Alberto','3','Vendedor',1530.00);
+
+insert into CadFun (CodFun, Nome, Depto,Funcao, Salario)
+values(15,'Marcos Henrique','2','Geremte',1985.75);
+insert into CadFun (CodFun, Nome, Depto,Funcao, Salario)
+values(7,'Aparecida','3','Secretaria',1200.50);
+
+insert into CadFun values (2,'Wilson de Macedo','3','Programador',1050.00);
+insert into CadFun values (5,'Augusto Souza ','3','Programador',1050.00);
+insert into CadFun values (44,'Jaciba da Silva','3',1500.00);
+
+select * from CadFun;
+
+select nome, funcao from cadfun;
+
+select nome, codfun from cadfun
+order by nome;
+
+select nome, salario from cadfun
+where depto ='3';
+
+select nome, salario from cadfun
+order by nome desc;
+
+update cadfun set salario = 2300.56 where codfun =7;
+
+select * from cadfun where codfun = 7;
+
+select * from cadfun where nome = 'Ana Bastos';
+
+update cadfun set depto = '3' where nome = 'Ana Bastos';
+
+update cadfun set salario =  salario *1.10;
